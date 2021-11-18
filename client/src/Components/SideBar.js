@@ -4,7 +4,6 @@ function SideBar({ user, updateUser, fetchingUsers }){
     const [isClicked, setIsClicked] = useState(false)
     const [bio, setBio] = useState(user.bio)
     const [image, setImage] = useState(user.image)
-    // const [password, setPassword] = useState('password')
     
     const msec = Date.parse(user.created_at)
     const parseDate = new Date(msec).toDateString()
@@ -24,10 +23,6 @@ function SideBar({ user, updateUser, fetchingUsers }){
         setImage(e.target.value)
     }
 
-    // function handleEditPassword(e){
-    //     setPassword(e.target.value)
-    // }
-
     function submitEditProfile(e) {
         e.preventDefault()
         fetch(`/users/${user.id}`, {
@@ -43,7 +38,6 @@ function SideBar({ user, updateUser, fetchingUsers }){
         })
         .then((resp) => resp.json())
         .then((data) => {
-			// console.log(data)
 			updateUser(data)
             fetchingUsers()
             setIsClicked(!isClicked)
@@ -80,16 +74,6 @@ function SideBar({ user, updateUser, fetchingUsers }){
                         onChange={handleEditImage}
                     />
                 </label>
-                {/* <div style={{ paddingTop: 10 }} /> */}
-                {/* <label>
-                    Password: <span>   </span>
-                    <input
-                        type="text"
-                        name="password"
-                        value={password}
-                        onChange={handleEditPassword}
-                    />
-                </label> */}
                 <div style={{ paddingTop: 10 }} /> 
                 <input type="submit" value="Confirm Changes" />
             </form>
